@@ -6,7 +6,7 @@ metadata:
   name: currency-conversion
   namespace: currency-conversion-ns
 spec:
-  replicas: 2 #CHANGE
+  replicas: 2 
   minReadySeconds: 45
   selector:
     matchLabels:
@@ -22,13 +22,11 @@ spec:
         app: currency-conversion
     spec:
       containers:
-      - image: in28min/currency-conversion:0.0.1-RELEASE #CHANGE
+      - image: in28min/currency-conversion:0.0.1-RELEASE 
         imagePullPolicy: IfNotPresent
         name: currency-conversion
         env:
           - name: CURRENCY_EXCHANGE_SERVICE_HOST
-           # value: http://currency-exchange # HERE the currency-exchange is the service name
-        
             valueFrom: 
               configMapKeyRef:
                 key: CURRENCY_EXCHANGE_SERVICE_HOST
@@ -39,16 +37,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  labels: #PODS
+  labels:
     app: currency-conversion
   name: currency-conversion
   namespace: currency-conversion-ns
 spec:
   ports:
-  - port: 8100 #CHANGE
+  - port: 8100 
     protocol: TCP
-    targetPort: 8100 #CHANGE
+    targetPort: 8100 
   selector:
     app: currency-conversion
-  sessionAffinity: None #CHANGE
+  sessionAffinity: None 
   type: LoadBalancer
