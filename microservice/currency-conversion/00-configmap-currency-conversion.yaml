@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: currency-conversion-config-map
+  namespace: currency-conversion-ns
+data:
+  CURRENCY_EXCHANGE_SERVICE_HOST: http://currency-exchange.currency-exchange-ns.svc.cluster.local
